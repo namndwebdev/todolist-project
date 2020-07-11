@@ -6,6 +6,10 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/public', express.static(path.join(__dirname, '/public')))
+var taskRouter = require('./routers/task')
+
+app.use('/api/tasks', taskRouter)
+
 
 app.get('/',  (req, res, next)=>{
     res.sendFile(path.join(__dirname, 'index.html'))
